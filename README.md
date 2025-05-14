@@ -33,7 +33,7 @@ Offers multiple difficulty modes from beginner to expert to meet the challenge n
 
 ## 🌟 游戏特色三：无损高清放大、互动特效、优美音乐、超炫音效  
 
-支持任意比例无损放大，细节清晰锐利；消除时配合精美交互动画与炫酷光效，让每一次连线都焕发新鲜感；配合动听背景音乐与沉浸式音效，带来视觉与听觉的双重享受。🎶🔊  
+支持任意比例无损放大，细节清晰锐利；消除时配合精美交互动画与炫酷光效，让每一次消除都焕发新鲜感；配合动听背景音乐与沉浸式音效，带来视觉与听觉的双重享受。🎶🔊  
 
 Supports lossless scaling at any ratio, keeping details crisp and sharp; pairs elegant interactive animations and dazzling visual effects when clearing lines, refreshing every combo; combined with delightful background music and immersive sound effects, delivering a feast for both the eyes and ears. 🎶🔊  
 
