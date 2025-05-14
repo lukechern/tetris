@@ -1,0 +1,761 @@
+/* 通用复位样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Press Start 2P', 'Courier New', monospace;
+    background-color: #050a14;
+    color: #f0f0f0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding-top: 2vh;
+    background-image: radial-gradient(circle at center, #0a1a2c 0%, #050a14 70%);
+    overflow: hidden;
+}
+
+/* 游戏容器样式 */
+.container_7ree {
+    width: 100%;
+    max-width: 1000px;
+    margin: 20px auto;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.7),
+        0 0 40px rgba(0, 200, 200, 0.2), /* 增强青色光晕效果 */
+        inset 0 0 15px rgba(0, 155, 155, 0.1); /* 增强内部光晕 */
+    border-radius: 15px;
+    background: linear-gradient(135deg, #0c276f 0%, #161a20 100%);
+    border: 1px solid #333;
+    padding: 25px;
+    box-sizing: border-box;
+}
+
+/* 标题样式 */
+.title_7ree {
+    font-size: 24px;
+    text-align: center;
+    color: #00ffff;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+/* 游戏面板容器样式 */
+#game_board_container_7ree {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* 游戏面板样式 */
+#game_board_7ree {
+    width: 100%;
+    aspect-ratio: 11 / 20;
+    display: grid;
+    border: 8px solid #111;
+    border-radius: 8px;
+    background-color: #101215; /* 基础颜色 */
+    background-image: 
+        radial-gradient(circle at 30% 35%, rgba(20, 40, 80, 0.4) 0%, transparent 45%),
+        radial-gradient(circle at 70% 65%, rgba(10, 30, 60, 0.3) 0%, transparent 40%),
+        linear-gradient(to bottom, #0c0e12 0%, #101215 30%, #131925 70%, #0a0e18 100%);
+    box-shadow: 
+        0 0 40px rgba(0, 20, 40, 0.6),
+        inset 0 0 20px rgba(0, 100, 200, 0.2);
+    margin: 0 auto;
+    max-height: 80vh;
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    perspective: 800px;
+    transform: translateZ(0);
+    
+    /* 更新边框样式 */
+    border-style: solid;
+    border-width: 8px;
+    border-color: #1a2a3a;
+    /* 添加高亮边框效果 */
+    border-image: linear-gradient(135deg, #2c4060 0%, #0d1520 100%) 1;
+    box-shadow: 
+        0 0 40px rgba(0, 20, 40, 0.6),
+        inset 0 0 20px rgba(0, 100, 200, 0.2),
+        0 0 0 1px rgba(100, 180, 255, 0.3); /* 外部高亮边缘 */
+}
+
+/* 游戏面板内边框发光效果 */
+#game_board_7ree::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 1px solid rgba(100, 180, 255, 0.3);
+    box-shadow: inset 0 0 15px rgba(0, 150, 255, 0.2);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* 游戏面板两侧边缘高光效果 */
+#game_board_7ree::after {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    height: 8px;
+    background: linear-gradient(to bottom, 
+        rgba(100, 200, 255, 0.4) 0%,
+        rgba(30, 60, 100, 0.3) 60%, 
+        rgba(10, 30, 60, 0.1) 100%);
+    transform: translateZ(2px) rotateX(45deg);
+    transform-origin: bottom;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    pointer-events: none;
+    z-index: 3;
+}
+
+/* 游戏面板左侧边缘高光效果 */
+.game_board_side_effect {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    width: 8px;
+    height: calc(100% + 16px);
+    background: linear-gradient(to right, 
+        rgba(100, 200, 255, 0.5) 0%,
+        rgba(30, 60, 100, 0.4) 60%, 
+        rgba(5, 15, 30, 0.2) 100%);
+    transform: translateZ(2px) rotateY(-45deg);
+    transform-origin: right;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    pointer-events: none;
+    z-index: 3;
+}
+
+/* 添加游戏面板右侧边缘高光效果 */
+.game_board_right_side_effect {
+    content: '';
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 8px;
+    height: calc(100% + 16px);
+    background: linear-gradient(to left, 
+        rgba(100, 200, 255, 0.5) 0%,
+        rgba(30, 60, 100, 0.4) 60%, 
+        rgba(5, 15, 30, 0.2) 100%);
+    transform: translateZ(2px) rotateY(45deg);
+    transform-origin: left;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    pointer-events: none;
+    z-index: 3;
+}
+
+/* 游戏面板扫光动画效果 */
+.game_board_light_sweep {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    /* 增强扫光效果：提高透明度并加宽光带 */
+    background: linear-gradient(45deg, 
+        transparent 40%, 
+        rgba(0, 200, 255, 0.1) 50%, /* 透明度从 0.03 提高到 0.15 */
+        transparent 60%
+    );
+    animation: lightSweep 8s infinite linear;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes lightSweep {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* 下一个方块预览区域 */
+#next_piece_7ree {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    display: grid;
+    background: linear-gradient(to bottom, rgba(5, 15, 30, 0.9) 0%, rgba(10, 25, 45, 0.8) 100%);
+    border: 2px solid #2a4060; /* 更鲜明的蓝色边框 */
+    border-radius: 5px;
+    margin: 10px 0;
+    box-shadow: 
+        inset 0 0 15px rgba(0, 20, 40, 0.5),
+        0 0 8px rgba(0, 100, 150, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+#next_piece_7ree::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(100, 200, 255, 0.05) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.preview_cell_7ree {
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-sizing: border-box;
+}
+
+/* 按钮样式 */
+.btn_7ree {
+    background-color: #1a2330;
+    color: #00ffff;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 10px;
+    margin: 5px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+    transition: all 0.2s;
+    outline: none;
+    text-transform: uppercase;
+    background-color: #2a2a2a;
+
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3), inset 0 0 5px rgba(0, 200, 200, 0.2);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    user-select: none; /* 标准语法 */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE/Edge */
+    -webkit-tap-highlight-color: transparent; /* 移除移动端点击高亮 */
+
+}
+
+.btn_7ree:hover {
+    background-color: #243040;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+}
+
+.btn_7ree:active {
+    transform: scale(0.95);
+    background-color: #222;
+}
+
+.btn_7ree:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* 数据统计区域 */
+.stats_7ree {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.score_container_7ree,
+.level_container_7ree,
+.lines_container_7ree,
+.time_container_7ree {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    background-color: rgba(10, 20, 35, 0.6);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.label_7ree {
+    font-size: 12px;
+    margin-bottom: 5px;
+    color: #aaa;
+}
+
+#score_7ree,
+#level_7ree,
+#lines_7ree,
+#time_7ree {
+    font-size: 18px;
+    color: #00ffff;
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+}
+
+/* 控制区域 */
+.controls_7ree {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.direction_controls_7ree,
+.action_controls_7ree {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    width: 100%;
+}
+
+/* 移动端标题和统计(PC端隐藏) */
+.mobile_title_7ree,
+.mobile_stats_7ree {
+    display: none;
+}
+
+.cell_7ree {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    box-sizing: border-box;
+    transform-style: preserve-3d;
+    perspective: 500px;
+}
+
+.cell_7ree.active_7ree {
+    border: 1px solid rgba(120, 180, 220, 0.5); /* 增强边框对比度 */
+    box-shadow: 
+        inset 0 0 5px rgba(100, 200, 255, 0.3),
+        0 3px 5px rgba(0, 50, 100, 0.2); /* 添加底部阴影 */
+    transform: translateZ(2px); /* 使用3D变换增强立体感 */
+    transition: all 0.1s ease;
+}
+
+/* 3D方块效果 - 活动方块内部方块 */
+.cell_7ree.active_7ree::before {
+    content: '';
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    width: 70%;
+    height: 70%;
+    background: inherit;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    /* 添加更复杂的阴影模拟第三层 */
+    box-shadow: 
+        inset 2px 2px 5px rgba(255, 255, 255, 0.6), /* 模拟顶部小方块的高光 */
+        inset -2px -2px 5px rgba(100, 150, 200, 0.3), /* 模拟顶部小方块的阴影 */
+        inset 0 0 8px rgba(255, 255, 255, 0.4), /* 保留原内阴影 */
+        0 0 5px rgba(0, 150, 255, 0.2); /* 保留外发光 */
+    transform: translateZ(2px);
+    z-index: 2;
+}
+
+/* 活动方块的顶部光照效果 */
+.cell_7ree.active_7ree::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, 
+                             rgba(255, 255, 255, 0.5) 0%, 
+                             rgba(180, 220, 250, 0.4) 10%, 
+                             rgba(100, 160, 220, 0.2) 30%,
+                             rgba(0, 0, 0, 0) 70%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* 活动方块四角连接线 */
+.cell_7ree.active_7ree span {
+    content: '';
+    position: absolute;
+    width: 15%;
+    height: 15%;
+    border-color: rgba(255, 255, 255, 0.5);
+    border-style: solid;
+    border-width: 0;
+    z-index: 3;
+}
+
+/* 左上角 */
+.cell_7ree.active_7ree span:nth-child(1) {
+    top: 15%;
+    left: 15%;
+    border-left-width: 1px;
+    border-top-width: 1px;
+}
+
+/* 右上角 */
+.cell_7ree.active_7ree span:nth-child(2) {
+    top: 15%;
+    right: 15%;
+    border-right-width: 1px;
+    border-top-width: 1px;
+}
+
+/* 左下角 */
+.cell_7ree.active_7ree span:nth-child(3) {
+    bottom: 15%;
+    left: 15%;
+    border-left-width: 1px;
+    border-bottom-width: 1px;
+}
+
+/* 右下角 */
+.cell_7ree.active_7ree span:nth-child(4) {
+    bottom: 15%;
+    right: 15%;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+}
+
+/* 预览方块的3D效果 */
+.preview_cell_7ree.active_preview_7ree {
+    position: relative;
+    border: 1px solid rgba(120, 180, 220, 0.5); /* 增强边框对比度 */
+    box-shadow: 
+        inset 0 0 5px rgba(100, 200, 255, 0.3),
+        0 3px 5px rgba(0, 50, 100, 0.2); /* 添加底部阴影 */
+    transform: translateZ(1px); /* 轻微3D效果 */
+    transform-style: preserve-3d;
+}
+
+/* 预览方块内部方块 */
+.preview_cell_7ree.active_preview_7ree::before {
+    content: '';
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    width: 70%;
+    height: 70%;
+    background: inherit;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    /* 添加更复杂的阴影模拟第三层 */
+    box-shadow: 
+        inset 2px 2px 5px rgba(255, 255, 255, 0.6),
+        inset -2px -2px 5px rgba(100, 150, 200, 0.3),
+        inset 0 0 8px rgba(255, 255, 255, 0.4),
+        0 0 5px rgba(0, 150, 255, 0.2);
+    transform: translateZ(2px);
+    z-index: 2;
+}
+
+/* 预览方块光照效果 */
+.preview_cell_7ree.active_preview_7ree::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, 
+                             rgba(255, 255, 255, 0.5) 0%, 
+                             rgba(180, 220, 250, 0.4) 10%, 
+                             rgba(100, 160, 220, 0.2) 30%,
+                             rgba(0, 0, 0, 0) 70%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* 3D方块效果 - 落地灰色方块 */
+.cell_7ree.landed_7ree {
+    border: 1px solid #6a7a8c; /* 更明亮、更锐利的边框 */
+    box-shadow: 
+        inset 1px 1px 3px rgba(180, 200, 230, 0.4), 
+        inset -1px -1px 3px rgba(10, 20, 40, 0.6),
+        0 1px 1px rgba(0, 0, 0, 0.2); /* 添加底部阴影 */
+    position: relative;
+    transform: translateZ(1px);
+    transform-style: preserve-3d;
+}
+
+/* 落地方块内部方块 */
+.cell_7ree.landed_7ree::before {
+    content: '';
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    width: 70%;
+    height: 70%;
+    background: inherit;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* 添加更复杂的阴影模拟第三层 */
+    box-shadow: 
+        inset 2px 2px 4px rgba(200, 220, 240, 0.4), /* 模拟顶部小方块的高光 */
+        inset -2px -2px 4px rgba(50, 70, 90, 0.3), /* 模拟顶部小方块的阴影 */
+        inset 1px 1px 3px rgba(180, 200, 230, 0.3), /* 保留原内阴影 */
+        inset -1px -1px 3px rgba(10, 20, 40, 0.5); /* 保留原内阴影 */
+    transform: translateZ(1px);
+    z-index: 2;
+}
+
+/* 落地方块光照效果 */
+.cell_7ree.landed_7ree::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, 
+                             rgba(200, 220, 240, 0.3) 0%, 
+                             rgba(140, 170, 200, 0.2) 20%,
+                             rgba(90, 120, 160, 0.1) 40%, 
+                             rgba(0, 0, 0, 0) 70%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* 按钮激活状态的视觉反馈 (适用于所有设备) */
+.btn_7ree.btn_active_7ree {
+    transform: scale(0.95); /* 轻微缩小 */
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.5), 0 0 5px rgba(0, 255, 255, 0.5); /* 模拟按下的内阴影和外发光 */
+    background-color: #009999 !important; /* 更鲜艳的青色 + !important确保优先级 */
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, background-color 0.2s ease-out; /* 与普通按钮过渡时间匹配 */
+}
+
+/* --- 新增：行消除粒子爆炸动画 --- */
+/* 粒子容器 */
+.particles-container_7ree {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 20;
+}
+
+/* 基础粒子样式 */
+.particle_7ree {
+    position: absolute;
+    /* 降低边界对比度，使用不规则形状 */
+    border-radius: 40%; /* 不那么完美的圆 */
+    background-color: rgba(11, 41, 110, 0.7); /* 降低不透明度 */
+    /* 模糊边缘，减弱轮廓感 */
+    filter: blur(1px);
+    box-shadow: 0 0 5px 1px rgba(0, 150, 255, 0.3);
+    pointer-events: none;
+    opacity: 0;
+    /* 添加一些变换以减少粒子看起来过于一致 */
+    transform-origin: center;
+}
+
+/* 被标记为消除的单元格 */
+.cell_7ree.line-clearing_7ree {
+    animation: cell-clearing_7ree 0.8s ease-in-out forwards;
+    z-index: 10;
+}
+
+/* 单元格消除动画 */
+@keyframes cell-clearing_7ree {
+    0% {
+        transform: scale(1);
+        filter: brightness(1);
+        opacity: 1;
+        box-shadow: none;
+    }
+    50% {
+        transform: scale(1.1);
+        filter: brightness(1.5);
+        opacity: 1;
+        box-shadow: 0 0 15px rgba(11, 41, 110, 0.8);
+    }
+    100% {
+        transform: scale(0);
+        filter: brightness(2);
+        opacity: 0;
+        box-shadow: 0 0 20px rgba(11, 41, 110, 0);
+    }
+}
+
+/* 粒子爆炸动画 - 多种变体，增加随机性 */
+@keyframes particle-explosion1_7ree {
+    0% {
+        transform: translate(-50%, -50%) scale(0.2) rotate(0deg);
+        opacity: 0.8;
+        filter: blur(1px);
+    }
+    20% {
+        opacity: 0.9;
+        filter: blur(1.5px);
+    }
+    100% {
+        transform: translate(-50%, -50%) translateX(var(--tx)) translateY(var(--ty)) scale(var(--scale)) rotate(var(--rotate));
+        opacity: 0;
+        filter: blur(2px);
+    }
+}
+
+@keyframes particle-explosion2_7ree {
+    0% {
+        transform: translate(-50%, -50%) scale(0.3) rotate(0deg);
+        opacity: 0.8;
+        filter: blur(1px);
+    }
+    40% {
+        opacity: 0.75;
+        filter: blur(1.5px);
+    }
+    100% {
+        transform: translate(-50%, -50%) translateX(var(--tx)) translateY(var(--ty)) scale(var(--scale)) rotate(var(--rotate));
+        opacity: 0;
+        filter: blur(2.5px);
+    }
+}
+
+@keyframes particle-explosion3_7ree {
+    0% {
+        transform: translate(-50%, -50%) scale(0.4) rotate(0deg);
+        opacity: 0.7;
+        filter: blur(1px);
+    }
+    30% {
+        opacity: 0.8;
+        filter: blur(1.5px);
+    }
+    100% {
+        transform: translate(-50%, -50%) translateX(var(--tx)) translateY(var(--ty)) scale(var(--scale)) rotate(var(--rotate));
+        opacity: 0;
+        filter: blur(3px);
+    }
+}
+
+/* 中心光效动画 */
+@keyframes center-glow_7ree {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0.7;
+        filter: blur(2px);
+        box-shadow: 0 0 10px 2px rgba(0, 150, 255, 0.6);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(2);
+        opacity: 0.5;
+        filter: blur(4px);
+        box-shadow: 0 0 30px 15px rgba(0, 100, 255, 0.4);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(4);
+        opacity: 0;
+        filter: blur(6px);
+        box-shadow: 0 0 0 0 rgba(0, 150, 255, 0);
+    }
+}
+
+/* 水平光束动画 */
+@keyframes horizontal-beam_7ree {
+    0% {
+        transform: scaleX(0);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scaleX(1);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scaleX(1);
+        opacity: 0;
+    }
+}
+
+/* 光束元素 */
+.beam-horizontal_7ree {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(to right, 
+        rgba(0, 150, 255, 0) 0%,
+        rgba(11, 41, 110, 0.8) 50%,
+        rgba(0, 150, 255, 0) 100%);
+    transform-origin: center;
+    opacity: 0;
+}
+
+/* 粒子颜色变体 */
+.particle-blue_7ree {
+    background-color: rgba(11, 41, 110, 0.7);
+    box-shadow: 0 0 5px 1px rgba(0, 150, 255, 0.3);
+    border-radius: 40%;
+}
+
+.particle-cyan_7ree {
+    background-color: rgba(0, 200, 255, 0.6);
+    box-shadow: 0 0 5px 1px rgba(0, 200, 255, 0.3);
+    border-radius: 35%;
+}
+
+.particle-purple_7ree {
+    background-color: rgba(58, 31, 93, 0.6);
+    box-shadow: 0 0 5px 1px rgba(100, 50, 200, 0.3);
+    border-radius: 45%;
+}
+
+.particle-white_7ree {
+    background-color: rgba(200, 220, 255, 0.5);
+    box-shadow: 0 0 5px 1px rgba(200, 220, 255, 0.3);
+    border-radius: 30%;
+}
+
+/* 不规则形状粒子 */
+.particle-triangle_7ree {
+    width: 0 !important;
+    height: 0 !important;
+    background-color: transparent !important;
+    border-left: var(--size) solid transparent;
+    border-right: var(--size) solid transparent;
+    border-bottom: calc(var(--size) * 1.5) solid rgba(0, 180, 255, 0.6);
+    box-shadow: 0 0 8px rgba(0, 180, 255, 0.3);
+    border-radius: 0;
+    filter: blur(0.5px);
+}
+
+.particle-diamond_7ree {
+    background-color: rgba(30, 100, 200, 0.6) !important;
+    border-radius: 4px !important;
+    transform: rotate(45deg);
+    filter: blur(0.5px);
+}
+
+/* 中心光效元素 */
+.center-glow_7ree {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 200, 255, 0.5) 0%, rgba(11, 41, 110, 0.3) 70%, transparent 100%);
+    opacity: 0;
+    filter: blur(3px);
+}
+
+/* 通用不可选中状态 */
+.non-selectable_7ree {
+    user-select: none; /* 标准语法 */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE/Edge */
+}
+
+/* .btn_7ree:focus 的样式 */
+.btn_7ree:focus {
+    /* Ensure no additional visual focus styles are applied */
+    /* outline is already none in the base style */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3), inset 0 0 5px rgba(0, 200, 200, 0.2); /* Match base style */
+    background-color: #2a2a2a; /* Match base style */
+}

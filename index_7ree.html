@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>俄罗斯方块 - AI高清复刻经典版</title>
+    <link rel="stylesheet" href="resource/css/base_7ree.css">
+    <link rel="stylesheet" href="resource/css/card_7ree.css">
+    <link rel="stylesheet" href="resource/css/pc_7ree.css" media="(min-width: 768px)">
+    <link rel="stylesheet" href="resource/css/mo_7ree.css" media="(max-width: 767px)">
+    <link rel="stylesheet" href="resource/css/3d_title_7ree.css">
+    <link rel="stylesheet" href="resource/css/celebration_7ree.css">
+    <link rel="stylesheet" href="resource/css/ghost_piece_7ree.css">
+    <link rel="stylesheet" href="resource/css/help_7ree.css">
+</head>
+<body>
+    <!-- 欢迎卡片 -->
+    <div id="welcome_card_7ree" class="card_7ree welcome_card_7ree">
+        <div class="card_content_7ree welcome_content_7ree">
+            <h1 class="card_title_7ree welcome_title_7ree">俄罗斯方块</h1>
+            <p class="welcome_subtitle_7ree">高清经典复刻版</p>
+            
+            <!-- 难度选择 -->
+            <div class="difficulty_selector_7ree" data-text="老手难度">
+                <select id="difficulty_select_7ree" class="difficulty_select_7ree">
+                    <option value="easy">菜鸟难度</option>
+                    <option value="normal" selected>老手难度</option>
+                    <option value="hard">专家难度</option>
+                    <option value="expert">大师难度</option>
+                </select>
+            </div>
+            
+            <button id="welcome_start_btn_7ree" class="card_btn_7ree welcome_btn_7ree">开始游戏</button>
+        </div>
+    </div>
+    
+    <!-- 游戏结算卡片 -->
+    <div id="gameover_card_7ree" class="card_7ree gameover_card_7ree">
+        <div class="card_content_7ree">
+            <h1 class="card_title_7ree">游戏结束</h1>
+            <div class="game_stats_7ree">
+                <div class="stat_item_7ree">
+                    <span class="stat_label_7ree">分数</span>
+                    <span id="final_score_7ree" class="stat_value_7ree">0</span>
+                </div>
+                <div class="stat_item_7ree">
+                    <span class="stat_label_7ree">层数</span>
+                    <span id="final_lines_7ree" class="stat_value_7ree">0</span>
+                </div>
+                <div class="stat_item_7ree">
+                    <span class="stat_label_7ree">等级</span>
+                    <span id="final_level_7ree" class="stat_value_7ree">1</span>
+                </div>
+                <div class="stat_item_7ree">
+                    <span class="stat_label_7ree">时间</span>
+                    <span id="final_time_7ree" class="stat_value_7ree">00:00</span>
+                </div>
+                <div class="stat_item_7ree">
+                    <span class="stat_label_7ree">难度</span>
+                    <span id="final_difficulty_7ree" class="stat_value_7ree">普通</span>
+                </div>
+            </div>
+            <button id="restart_game_btn_7ree" class="card_btn_7ree">再来一次</button>
+            <button id="change_difficulty_btn_7ree" class="card_btn_7ree">重选难度</button>
+        </div>
+    </div>
+    
+    <!-- 游戏暂停卡片 -->
+    <div id="pause_card_7ree" class="card_7ree pause_card_7ree">
+        <div class="card_content_7ree pause_content_7ree">
+            <h1 class="card_title_7ree">游戏暂停</h1>
+            <p class="pause_message_7ree">游戏已暂停，休息一下吧</p>
+            <button id="resume_game_btn_7ree" class="card_btn_7ree pause_btn_7ree">继续游戏</button>
+        </div>
+    </div>
+    
+    <div class="container_7ree">
+        <!-- PC布局：左中右三列 -->
+        <div class="sidebar_left_7ree">
+            <div class="title_7ree">俄罗斯方块</div>
+            <div class="difficulty_display_pc"><span id="difficulty_value_pc">老手难度</span></div>
+            <div class="stats_7ree">
+                <div class="score_container_7ree">
+                    <div class="label_7ree">分数</div>
+                    <div id="score_7ree">0</div>
+                </div>
+                <div class="level_container_7ree">
+                    <div class="label_7ree">关卡</div>
+                    <div id="level_7ree">1</div>
+                </div>
+                <div class="lines_container_7ree">
+                    <div class="label_7ree">层数</div>
+                    <div id="lines_7ree">0</div>
+                </div>
+                <div class="time_container_7ree">
+                    <div class="label_7ree">时间</div>
+                    <div id="time_7ree">00:00</div>
+                </div>
+            </div>
+            
+            <!-- 键盘提示 (仅PC可见，通过CSS控制) - 移到左侧栏底部 -->
+            <div class="keyboard_hints_7ree">
+                <div class="hint_title_7ree">键盘控制提示</div>
+
+                <div class="hint_item_7ree">
+                    <span class="key_7ree">▶️</span>
+                    <span class="action_7ree">开始 (回车)</span>
+                </div>  
+                <div class="hint_item_7ree">
+                    <span class="key_7ree">⏸️</span>
+                    <span class="action_7ree">暂停 (ESC)</span>
+                </div>         
+                <div class="hint_item_7ree">
+                    <span class="key_7ree">🔄</span>
+                    <span class="action_7ree">重新开始 (R)</span>
+                </div>
+                <div class="hint_item_7ree">
+                    <span class="key_7ree">🔊</span>
+                    <span class="action_7ree">声音开关 (M)</span>
+                </div>
+
+                <div class="hint_item_7ree">
+                    <span class="key_7ree">⬅</span>
+                    <span class="action_7ree">向左移动 (左箭头)</span>
+                </div>
+                <div class="hint_item_7ree">
+                    <span class="key_7ree">➡</span>
+                    <span class="action_7ree">向右移动 (右箭头)</span>
+                </div>
+
+                <div class="hint_item_7ree">
+                    <span class="key_7ree">⬆</span>
+                    <span class="action_7ree">旋转 (上箭头)</span>
+                </div>
+
+                <div class="hint_item_7ree">
+                    <span class="key_7ree">⬇</span>
+                    <span class="action_7ree">向下移动 (下箭头)</span>
+                </div>
+
+                <div class="hint_item_7ree">
+                    <span class="key_7ree">⏬︎</span>
+                    <span class="action_7ree">落到底 (空格)</span>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="game_container_7ree">
+            <div class="celebration_7ree"></div>
+            <!-- 游戏面板 -->
+            <div id="game_board_container_7ree">
+                <div id="game_board_7ree"></div>
+                <!-- 添加游戏面板的侧边高光效果 -->
+                <div class="game_board_side_effect"></div>
+                <!-- 添加游戏面板的右侧高光效果 -->
+                <div class="game_board_right_side_effect"></div>
+            </div>
+        </div>
+
+        <div class="sidebar_right_7ree">
+            <!-- 新增容器包裹预览窗口和主要控制按钮 -->
+            <div class="bottom_controls_wrapper_7ree">
+                <div class="bottom_controls_row_7ree">
+                    <div class="next_piece_container_7ree">
+                        <div class="label_7ree">下一个</div>
+                        <div id="next_piece_7ree"></div>
+                    </div>
+                    <!-- 手机布局的移动端数据显示（PC端隐藏） -->
+                    <div class="mobile_stats_7ree">
+                        <div class="stat_item_7ree">
+                            <span class="label_7ree">分数</span>
+                            <span class="value_7ree" id="mobile_score_7ree">0</span>
+                        </div>
+                        <div class="stat_item_7ree">
+                            <span class="label_7ree">关卡</span>
+                            <span class="value_7ree" id="mobile_level_7ree">1</span>
+                        </div>
+                        <div class="stat_item_7ree">
+                            <span class="label_7ree">层数</span>
+                            <span class="value_7ree" id="mobile_lines_7ree">0</span>
+                        </div>
+                        <div class="stat_item_7ree">
+                            <span class="label_7ree">时间</span>
+                            <span class="value_7ree" id="mobile_time_7ree">00:00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom_controls_row_7ree">
+                    <div class="main_controls_7ree">
+                        <button id="help_btn_7ree" class="btn_7ree" data-tooltip="帮助 (H)">❓</button>
+                        <button id="start_btn_7ree" class="btn_7ree" data-tooltip="开始 / 重新开始 (R)">▶️</button>
+                        <button id="pause_btn_7ree" class="btn_7ree" data-tooltip="暂停 / 继续 (ESC)">⏸️</button>
+                        <button id="ghost_toggle_btn_7ree" class="btn_7ree" data-tooltip="辅助瞄准 开 / 关 (F)">🔍︎</button>
+                        <button id="sound_btn_7ree" class="btn_7ree" data-tooltip="声音 开 / 关 (M)">🔊</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 移动端操作按钮 + PC版键盘提示 -->
+            <div class="controls_7ree">
+                <!-- 用户操作按钮 (移动端/PC端 触摸/点击) -->
+                <div class="user_controls_7ree pc_style_controls_7ree">
+                    <button id="drop_btn_7ree" class="btn_7ree" data-tooltip="落到底 (空格)">⏬︎</button>
+                    <button id="down_btn_7ree" class="btn_7ree" data-tooltip="向下移动 (↓)">⬇</button>
+                    <button id="left_btn_7ree" class="btn_7ree" data-tooltip="向左移动 (←)">⬅</button>
+                    <button id="rotate_btn_7ree" class="btn_7ree" data-tooltip="旋转 (↑)">⬆</button>
+                    <button id="right_btn_7ree" class="btn_7ree" data-tooltip="向右移动 (→)">➡</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 手机布局的移动端标题区域（PC端隐藏） -->
+        <div class="mobile_header_7ree">
+            <div class="mobile_title_7ree">俄罗斯方块</div>
+            <div class="difficulty_display_mobile"><span id="difficulty_value_mobile">老手难度</span></div>
+        </div>
+
+
+    </div>
+
+
+    <div id="help_card_7ree" class="help_card_7ree">
+        <div class="card_content_7ree">
+            <h1 class="card_title_7ree">帮助</h1>
+            <div class="help_message_7ree">
+                <ul>
+                        <li>1. 游戏开始后，方块会从顶部缓慢下落。</li>
+                        <li>2. 方块下落过程中，可以通过键盘或触摸屏控制方块的移动。</li>
+                        <li>3. 方块下落到底部或碰到其他方块时停止。</li>
+                        <li>4. 当一行被方块填满时，该行会被消除并得分。</li>
+                        <li>5. 游戏目标是尽可能多地消除行数，获得高分。</li>
+                        <li>6. 使用键盘控制：左/右箭头移动，上箭头旋转，下箭头加速下落，空格键直接落到底部。</li>
+                        <li>7. 点击声音按钮可以开启/关闭音效，点击暂停按钮可以暂停游戏。</li>
+                        <li>8. 点击辅助瞄准按钮可以显示/隐藏瞄准方块。</li>
+                        <li>9. 当方块堆叠到屏幕顶部时，游戏结束。</li>
+                        <li>10. 每消除10行会提升一个等级，游戏速度会相应加快。</li>
+                        <li>11. 消除多行可以获得额外的奖励分数。</li>
+                        <li>12. 游戏难度可以在开始前选择，难度越高，初始速度越快。</li>
+                        <li>13. 高难度模式下，游戏开始时会有预先堆叠的方块。</li>
+                        <li>14. 移动端可以使用触摸按钮控制。</li>
+                        <li>15. 可以随时点击重新开始按钮重置游戏。</li>
+                        <li>16. 致敬程序员阿列克谢·帕基特诺夫~~他发明的这款游戏，给全世界人民带来了欢乐的摸鱼时光。🎉🧸</li>
+                        <li>17. 本游戏由柒瑞设计制作，公益开源、免费分享给大家，祝大家摸鱼快乐！！</li>
+                        <li>18. 柒瑞更多应用请访问：🔗<a href="https://addon.dismall.com/developer-7.html" target="_blank">https://addon.dismall.com/developer-7.html</a></li>
+                        <li>19. 感谢以下AI团队提供技术支援（排名不分先后）：Claude-3.7-sonnet;Gemini-2.5-pro;GPT-4o;DeepSeek-v3;Cursor;Trae;通义灵码。</li>
+                    </ul>
+            </div>
+            <button id="close_help_btn_7ree" class="card_btn_7ree">谢谢，我知道了</button>
+        </div>
+    </div>
+
+
+    <!-- 游戏音效 -->
+    <audio id="rotate_sound_7ree" preload="auto">
+        <source src="" type="audio/mpeg">
+    </audio>
+    <audio id="move_sound_7ree" preload="auto">
+        <source src="" type="audio/mpeg">
+    </audio>
+    <audio id="drop_sound_7ree" preload="auto">
+        <source src="" type="audio/mpeg">
+    </audio>
+    <audio id="clear_sound_7ree" preload="auto">
+        <source src="" type="audio/mpeg">
+    </audio>
+    <audio id="gameover_sound_7ree" preload="auto">
+        <source src="" type="audio/mpeg">
+    </audio>
+    <audio id="levelup_sound_7ree" preload="auto">
+        <source src="" type="audio/mpeg">
+    </audio>
+    <audio id="landed_sound_7ree" preload="auto">
+        <source src="" type="audio/mpeg">
+    </audio>
+    <audio id="harddrop_sound_7ree" preload="auto">
+        <source src="" type="audio/mpeg">
+    </audio>
+    <audio id="combo_sound_7ree" preload="auto">
+        <source src="" type="audio/mpeg">
+    </audio>
+
+    <!-- 游戏主要脚本 -->
+    <script src="resource/config/config_system_7ree.js"></script>
+    <script src="resource/config/config_user_7ree.js"></script>
+    <script src="resource/js/lang_7ree.js"></script>
+    <script src="resource/js/lang_utils_7ree.js"></script>
+    <script src="resource/js/base_7ree.js"></script>
+    <script src="resource/js/pc_7ree.js"></script>
+    <script src="resource/js/mo_7ree.js"></script>
+    <script src="resource/js/utils_7ree.js"></script>
+    <script src="resource/js/sound_7ree.js"></script>
+    <script src="resource/js/difficulty_7ree.js"></script>
+    <script src="resource/js/celebration_7ree.js"></script>
+    <script src="resource/js/ghost_piece_7ree.js"></script>
+    <script src="resource/js/tetris_7ree.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,342 @@
+/* 移动端布局特定样式 */
+@media (max-width: 767px) {
+    /* 整体布局优化-确保所有内容在一屏内显示 */
+    html, body {
+        height: 100%;
+        overflow: hidden;
+        position: fixed;
+        width: 100%;
+        touch-action: manipulation;
+        
+        /* 移动端性能优化 */
+        -webkit-backface-visibility: hidden; /* 防止元素背面可见造成闪烁 */
+        backface-visibility: hidden;
+        transform: translate3d(0, 0, 0); /* 启用硬件加速 */
+    }
+    
+    /* 移动端专用方块渲染优化 */
+    .cell_7ree {
+        transform: translate3d(0, 0, 0); /* 强制硬件加速 */
+        will-change: transform, opacity, background-color; /* 提示浏览器这些属性将会变化 */
+        /* 完全移除过渡效果，避免残影问题 */
+        transition: none !important;
+    }
+    
+    /* 活动方块优化 - 确保平滑渲染 */
+    .cell_7ree.active_7ree {
+        /* 减少复杂阴影，降低渲染负担 */
+        box-shadow: inset 0 0 3px rgba(100, 200, 255, 0.3), 0 2px 3px rgba(0, 50, 100, 0.2);
+        /* 特定移动端的变换简化 */
+        transform: translateZ(1px);
+        /* 当方块激活时阻止子元素闪烁 */
+        contain: paint;
+        /* 强制立即重绘，不使用过渡 */
+        transition: none !important;
+    }
+    
+    /* 活动方块内部优化 */
+    .cell_7ree.active_7ree::before,
+    .cell_7ree.active_7ree::after {
+        will-change: transform;
+        transition: none !important;
+    }
+    
+    /* 提高活动方块的叠层顺序，避免和下方元素混合导致闪烁 */
+    .cell_7ree.active_7ree {
+        z-index: 2;
+    }
+    
+    /* 已落地方块优化 */
+    .cell_7ree.landed_7ree {
+        z-index: 1;
+    }
+    
+    .container_7ree {
+        flex-direction: column;
+        padding: 10px;
+        width: 100%;
+        height: 100%;
+        max-width: 100%;
+        min-height: 100%;
+        max-height: 100vh;
+        border-radius: 0;
+        justify-content: space-between;
+        overflow: hidden;
+        display: flex;
+    }
+    
+    /* 隐藏PC端专用元素 */
+    .sidebar_left_7ree /* 移除不再需要的选择器 */
+    /* ,.sidebar_right_7ree .next_piece_container_7ree .label_7ree */ {
+        display: none;
+    }
+    
+    /* 显示移动端专用元素 */
+    .mobile_title_7ree,
+    .mobile_stats_7ree {
+        display: block;
+    }
+    
+    /* 移动端标题区域统一样式 */
+    .mobile_header_7ree {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 100;
+        padding: 5px 0;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+    
+    /* 标题样式优化 */
+    .mobile_title_7ree {
+        font-size: 24px;
+        width: auto;
+        text-align: center;
+        color: #00ffff;
+        text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+        line-height: 1;
+        margin: 0;
+        padding-bottom: 10px;
+    }
+    
+    /* 难度显示样式 - 移动版 */
+    .difficulty_display_mobile {
+        color: #00ffff;
+        font-size: 12px;
+        background-color: rgba(0, 50, 75, 0.7);
+        border-radius: 4px;
+        padding: 2px 8px;
+        width: auto;
+        height: auto;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* 移动端数据统计区优化-更紧凑 */
+    .mobile_stats_7ree {
+        margin-top: 0;
+        padding: 8px;
+        order: 0;
+        margin-left: 0;
+        display: flex;
+        width: 0;
+        flex-grow: 1;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    
+    .stat_item_7ree {
+        padding: 5px;
+        display: flex;
+        flex-direction: column; /* 改为纵向排列 */
+        align-items: center; /* 水平居中 */
+    }
+    
+    .stat_item_7ree .label_7ree {
+        font-size: 10px;
+        color: #aaa;
+        text-align: center; /* 居中对齐 */
+        margin-bottom: 3px; /* 添加下边距，分隔标签和值 */
+        margin-right: 0; /* 移除右边距 */
+    }
+    
+    .stat_item_7ree .value_7ree {
+        font-size: 16px;
+        color: #00ffff;
+        text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+        text-align: center; /* 居中对齐 */
+    }
+    
+    /* 游戏区域优化-自动调整大小 */
+    .game_container_7ree {
+        width: 100%;
+        height: auto;
+        flex: 1; /* 允许游戏区域占据可用空间 */
+        order: -2;
+        margin: 0 auto;
+        max-width: none; /* 移除限制，让它自适应 */
+        min-height: 0; /* 防止溢出 */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0; /* 移除左右内边距 */
+        padding-bottom: 35vh; /* 为固定定位的控制区域预留空间 */
+    }
+    
+    #game_board_7ree {
+        width: auto;
+        height: auto;
+        max-height: 60vh; /* 进一步减小最大高度，防止重叠 */
+        margin-top: 35px; /* 减少顶部边距，让游戏板上移 */
+    }
+    
+    /* 确保移动端也显示右侧边框效果 */
+    .game_board_right_side_effect {
+        display: block;
+    }
+    
+    /* 右侧边栏（现在是底部区域） */
+    .sidebar_right_7ree {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        order: 1;
+        margin-top: auto; /* 自动分配上边距 */
+        padding-top: 5px;
+        background: none; /* 强制无背景 */
+        background-color: transparent; /* 强制透明背景色 */
+    }
+    
+    /* 包含预览窗口和主要控制按钮的容器 - 固定定位 */
+    .bottom_controls_wrapper_7ree {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 5px 5px 5px 10px;
+        margin-bottom: 0;
+        position: fixed;
+        bottom: 115px;
+        left: 0;
+        z-index: 100;
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+    
+    /* 恢复并调整底部控制行样式 */
+    .bottom_controls_row_7ree {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 5px;
+    }
+    
+    /* 第一行：预览窗口和统计数据左右排列 */
+    .bottom_controls_row_7ree:first-child {
+        justify-content: flex-start;
+        gap: 2px;
+    }
+    
+    /* 第二行：主控制按钮居中 */
+    .bottom_controls_row_7ree:nth-child(2) {
+        justify-content: center;
+        margin-top: 5px;
+    }
+    
+    /* 用户操作按键（方向、旋转等）调整布局和大小 - 固定定位 */
+    .controls_7ree {
+        order: 1;
+        margin-top: 0;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        position: fixed; /* 使用固定定位 */
+        bottom: 10px; /* 靠近底部 */
+        left: 0; /* 左侧对齐 */
+        z-index: 100; /* 确保在游戏板上方 */
+        padding: 10px 5px;
+        background-color: rgba(0, 0, 0, 0.3); /* 半透明背景 */
+    }
+    
+    .user_controls_7ree {
+        order: 1;
+        margin-top: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        padding: 5px 0;
+    }
+    
+    /* 下一个方块预览区调整 */
+    .next_piece_container_7ree {
+        position: relative;
+        top: auto;
+        right: auto;
+        width: 35%;
+        flex-shrink: 0;
+        order: -1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-left: 0;
+    }
+
+    #next_piece_7ree {
+        width: 60px;
+        height: 60px;
+        background-color: rgba(0, 0, 0, 0.7);
+        margin-bottom: 2px;
+    }
+    
+    .next_piece_container_7ree .label_7ree {
+        font-size: 10px;
+        color: #aaa;
+        display: none;
+    }
+
+    /* 确保键盘提示仍然隐藏 */
+    .keyboard_hints_7ree {
+        display: none !important;
+    }
+    
+    /* 确保 main_controls 在移动端显示并布局正确 */
+    .main_controls_7ree {
+        display: flex !important;
+        gap: 5px;
+        order: 0;
+        margin-right: 0;
+        margin-left: 0;
+        align-items: center;
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .main_controls_7ree .btn_7ree {
+        width: 20%;
+        height: 60px;
+        font-size: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        margin: 0;
+    }
+
+
+
+    /* 新的操作按钮样式 - 增大尺寸 */
+    .user_controls_7ree .btn_7ree {
+        width: 80px;
+        height: 80px;
+        font-size: 43px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        margin: 0 5px;
+        background-color: #2a2a2a;
+    }
+
+    .user_controls_7ree .btn_7ree:active {
+        transform: scale(0.92);
+        box-shadow: 0 1px 2px rgba(0,0,0,0.4);
+    }
+    
+    /* 美化方块效果 */
+    .cell_7ree {
+        border-width: 1px;
+    }
+    
+    /* 整体容器适应移动设备 */
+    body {
+        padding: 0;
+    }
+}

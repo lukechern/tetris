@@ -1,0 +1,216 @@
+/* 3D立体标题效果 */
+
+/* 通用基础样式 */
+.card_title_7ree.welcome_title_7ree,
+.sidebar_left_7ree .title_7ree,
+.mobile_title_7ree {
+    color: #00ffff;
+    letter-spacing: 4px;
+    position: relative;
+    z-index: 2;
+    transform-origin: center bottom;
+}
+
+/* 1. 欢迎卡片标题 - 特定字体大小和完整的3D效果 */
+.card_title_7ree.welcome_title_7ree {
+    font-size: 32px;
+    /* 调整的3D效果 - 12层 */
+    text-shadow:
+        0 1px 0 #0cddff,
+        0 2px 0 #0bcdee,
+        0 3px 0 #0abedd,
+        0 4px 0 #09afcc, 
+        0 5px 0 #08a0bb,
+        0 6px 0 #0791aa,
+        0 7px 0 #068299,
+        0 8px 0 #057388,
+        0 9px 0 #046477,
+        0 10px 0 #035566,
+        0 11px 0 #024655,
+        0 12px 12px rgba(0, 0, 0, 0.8);
+    transform: perspective(500px) rotateX(10deg);
+    animation: welcome-title-glow 2s infinite alternate;
+}
+
+/* 2. PC版侧边栏标题 - 特定字体大小和低3D效果(5层) */
+.sidebar_left_7ree .title_7ree {
+    font-size: 24px;
+    text-shadow:
+        0 0.5px 0 #0cddff,
+        0 1px 0 #0bcdee,
+        0 1.5px 0 #0abedd,
+        0 2px 0 #09afcc, 
+        0 2.5px 3px rgba(0, 0, 0, 0.7);
+    transform: perspective(500px) rotateX(5deg);
+    animation: pc-title-glow 2s infinite alternate;
+}
+
+/* 3. 移动版标题 - 特定字体大小和低3D效果(5层) */
+.mobile_title_7ree {
+    font-size: 24px;
+    text-shadow:
+        0 0.5px 0 #0cddff,
+        0 1px 0 #0bcdee,
+        0 1.5px 0 #0abedd,
+        0 2px 0 #09afcc, 
+        0 2.5px 3px rgba(0, 0, 0, 0.7);
+    transform: perspective(500px) rotateX(5deg);
+    animation: mobile-title-glow 2s infinite alternate;
+}
+
+/* 欢迎卡片标题的发光动画 - 12层 */
+@keyframes welcome-title-glow {
+    from {
+        text-shadow:
+            0 1px 0 #0cddff,
+            0 2px 0 #0bcdee,
+            0 3px 0 #0abedd,
+            0 4px 0 #09afcc, 
+            0 5px 0 #08a0bb,
+            0 6px 0 #0791aa,
+            0 7px 0 #068299,
+            0 8px 0 #057388,
+            0 9px 0 #046477,
+            0 10px 0 #035566,
+            0 11px 0 #024655,
+            0 12px 12px rgba(0, 0, 0, 0.8),
+            0 0 15px rgba(0, 255, 255, 0.3);
+        filter: brightness(0.95);
+    }
+    to {
+        text-shadow:
+            0 1px 0 #0cddff,
+            0 2px 0 #0bcdee,
+            0 3px 0 #0abedd,
+            0 4px 0 #09afcc, 
+            0 5px 0 #08a0bb,
+            0 6px 0 #0791aa,
+            0 7px 0 #068299,
+            0 8px 0 #057388,
+            0 9px 0 #046477,
+            0 10px 0 #035566,
+            0 11px 0 #024655,
+            0 12px 12px rgba(0, 0, 0, 0.8),
+            0 0 30px rgba(0, 255, 255, 0.7);
+        filter: brightness(1.05);
+    }
+}
+
+/* PC版标题的发光动画 - 5层 */
+@keyframes pc-title-glow {
+    from {
+        text-shadow:
+            0 0.5px 0 #0cddff,
+            0 1px 0 #0bcdee,
+            0 1.5px 0 #0abedd,
+            0 2px 0 #09afcc,
+            0 2.5px 3px rgba(0, 0, 0, 0.7),
+            0 0 10px rgba(0, 255, 255, 0.3);
+        filter: brightness(0.95);
+    }
+    to {
+        text-shadow:
+            0 0.5px 0 #0cddff,
+            0 1px 0 #0bcdee,
+            0 1.5px 0 #0abedd,
+            0 2px 0 #09afcc,
+            0 2.5px 3px rgba(0, 0, 0, 0.7),
+            0 0 20px rgba(0, 255, 255, 0.6);
+        filter: brightness(1.05);
+    }
+}
+
+/* 移动版标题的发光动画 - 5层 */
+@keyframes mobile-title-glow {
+    from {
+        text-shadow:
+            0 0.5px 0 #0cddff,
+            0 1px 0 #0bcdee,
+            0 1.5px 0 #0abedd,
+            0 2px 0 #09afcc,
+            0 2.5px 3px rgba(0, 0, 0, 0.7),
+            0 0 10px rgba(0, 255, 255, 0.3);
+        filter: brightness(0.95);
+    }
+    to {
+        text-shadow:
+            0 0.5px 0 #0cddff,
+            0 1px 0 #0bcdee,
+            0 1.5px 0 #0abedd,
+            0 2px 0 #09afcc,
+            0 2.5px 3px rgba(0, 0, 0, 0.7),
+            0 0 20px rgba(0, 255, 255, 0.6);
+        filter: brightness(1.05);
+    }
+}
+
+/* PC版调整 - 仅调整字体大小 */
+@media (min-width: 768px) {
+    .card_title_7ree.welcome_title_7ree {
+        font-size: 40px;
+    }
+    
+    .sidebar_left_7ree .title_7ree {
+        font-size: 28px;
+    }
+}
+
+/* 手机版调整 - 为欢迎卡片标题减小层间距 */
+@media (max-width: 767px) {
+    .card_title_7ree.welcome_title_7ree {
+        /* 较小的层间距 */
+        text-shadow:
+            0 0.5px 0 #0cddff,
+            0 1px 0 #0bcdee,
+            0 1.5px 0 #0abedd,
+            0 2px 0 #09afcc, 
+            0 2.5px 0 #08a0bb,
+            0 3px 0 #0791aa,
+            0 3.5px 0 #068299,
+            0 4px 0 #057388,
+            0 4.5px 0 #046477,
+            0 5px 0 #035566,
+            0 5.5px 0 #024655,
+            0 6px 6px rgba(0, 0, 0, 0.8);
+        /* 减小旋转角度 */
+        transform: perspective(500px) rotateX(7deg);
+    }
+    
+    /* 手机版欢迎卡片标题动画 */
+    @keyframes welcome-title-glow {
+        from {
+            text-shadow:
+                0 0.5px 0 #0cddff,
+                0 1px 0 #0bcdee,
+                0 1.5px 0 #0abedd,
+                0 2px 0 #09afcc, 
+                0 2.5px 0 #08a0bb,
+                0 3px 0 #0791aa,
+                0 3.5px 0 #068299,
+                0 4px 0 #057388,
+                0 4.5px 0 #046477,
+                0 5px 0 #035566,
+                0 5.5px 0 #024655,
+                0 6px 6px rgba(0, 0, 0, 0.8),
+                0 0 15px rgba(0, 255, 255, 0.3);
+            filter: brightness(0.95);
+        }
+        to {
+            text-shadow:
+                0 0.5px 0 #0cddff,
+                0 1px 0 #0bcdee,
+                0 1.5px 0 #0abedd,
+                0 2px 0 #09afcc, 
+                0 2.5px 0 #08a0bb,
+                0 3px 0 #0791aa,
+                0 3.5px 0 #068299,
+                0 4px 0 #057388,
+                0 4.5px 0 #046477,
+                0 5px 0 #035566,
+                0 5.5px 0 #024655,
+                0 6px 6px rgba(0, 0, 0, 0.8),
+                0 0 25px rgba(0, 255, 255, 0.6);
+            filter: brightness(1.05);
+        }
+    }
+} 

@@ -1,0 +1,435 @@
+/* 卡片通用样式 */
+.card_7ree {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease;
+}
+
+.card_content_7ree {
+    background: linear-gradient(135deg, #0c276f 0%, #161a20 100%);
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.7),
+        0 0 40px rgba(0, 200, 200, 0.2), 
+        inset 0 0 15px rgba(0, 155, 155, 0.1);
+    border: 2px solid #13315e;
+    max-width: 90%;
+    width: 350px;
+}
+
+.card_title_7ree {
+    font-size: 32px;
+    margin: 0 0 10px 0;
+    color: #00ffff; /* 默认青色 */
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+    letter-spacing: 1px;
+}
+
+.card_btn_7ree {
+    background-color: #1a2330;
+    color: #00ffff;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 30px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: inline-block;
+    margin-top: 20px;
+    outline: none;
+    text-transform: uppercase;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3), inset 0 0 5px rgba(0, 200, 200, 0.2);
+}
+
+.card_btn_7ree:hover {
+    background-color: #243040;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+.card_btn_7ree:active {
+    transform: scale(0.95);
+    background-color: #222;
+}
+
+/* 欢迎卡片特殊样式 */
+.welcome_card_7ree {
+    /* 继承自.card_7ree */
+}
+
+.welcome_content_7ree {
+    /* 继承自.card_content_7ree */
+}
+
+.welcome_title_7ree {
+    /* 继承自.card_title_7ree - 保持青色 #00ffff */
+}
+
+.welcome_subtitle_7ree {
+    font-size: 18px;
+    color: #aaccff;
+    margin: 30px auto;
+}
+
+/* 难度选择器样式 */
+.difficulty_selector_7ree {
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+
+.difficulty_selector_7ree label {
+    color: #aaccff;
+    margin-bottom: 8px;
+    font-size: 16px;
+    display: block;
+    text-align: center;
+}
+
+/* 完全隐藏原生select样式 */
+.difficulty_select_7ree {
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+    height: 40px;
+    width: 100%;
+    max-width: 150px;
+    cursor: pointer;
+    /* 为兼容Firefox，确保下拉框使用自定义样式 */
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    color: #00ffff;
+}
+
+/* 修改option元素样式 */
+.difficulty_select_7ree option {
+    background-color: #0c1624;
+    color: #00ffff;
+    padding: 10px 15px;
+    text-align: center;
+}
+
+/* 选中的选项高亮显示 */
+.difficulty_select_7ree option:checked {
+    background-color: #00667a;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* 为确保跨浏览器一致性，添加select容器和select伪元素的样式 */
+select.difficulty_select_7ree::-ms-expand {
+    display: none;
+}
+
+/* 修正下拉框样式，添加特定浏览器风格 */
+@-moz-document url-prefix() {
+    .difficulty_select_7ree {
+        background-color: #0c1624;
+        color: #00ffff;
+        border: 1px solid #0c1624;
+    }
+    
+    .difficulty_select_7ree option {
+        background-color: #0c276f;
+        color: #00ffff;
+    }
+}
+
+/* 修正Webkit内核浏览器(Chrome)的下拉框样式 */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    .difficulty_select_7ree option {
+        background-color: #0c1624;
+        color: #00ffff;
+    }
+    
+    select.difficulty_select_7ree {
+        background-color: #0c1624;
+    }
+}
+
+/* 使用伪元素创建自定义select外观 */
+.difficulty_selector_7ree::after {
+    content: attr(data-text);  /* 使用data-text属性动态显示文本 */
+    position: absolute;
+    top: calc(50% + 4px);
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150px;
+    height: 40px;
+    background-color: #1a2330;
+    color: #00ffff;
+    border: 1px solid #13315e;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3), inset 0 0 5px rgba(0, 200, 200, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    pointer-events: none;
+    z-index: 1;
+    padding-right: 15px; /* 为箭头留出空间 */
+}
+
+/* 下拉箭头 - 移动端 */
+.difficulty_selector_7ree::before {
+    content: "";
+    position: absolute;
+    top: calc(50% + 4px);
+    right: calc(50% - 45px); /* 移动端右侧位置微调 */
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid #00ffff;
+    border-bottom: 2px solid #00ffff;
+    transform: translateY(-50%) rotate(45deg);
+    pointer-events: none;
+    z-index: 3;
+}
+
+/* 悬停效果 */
+.difficulty_select_7ree:hover + .difficulty_selector_7ree::after {
+    background-color: #00667a;
+    border-color: #00ffff;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+}
+
+/* 获取焦点效果 */
+.difficulty_select_7ree:focus + .difficulty_selector_7ree::after {
+    border-color: #00ffff;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+}
+
+/* PC版卡片尺寸调整 */
+@media (min-width: 768px) {
+    .difficulty_selector_7ree label {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+    
+    .difficulty_select_7ree {
+        height: 45px;
+        max-width: 180px;
+    }
+    
+    .difficulty_selector_7ree::after {
+        font-size: 18px;
+        height: 45px;
+        width: 180px;
+    }
+    
+    /* PC版箭头位置调整 */
+    .difficulty_selector_7ree::before {
+        right: calc(50% - 70px); /* PC版向左调整位置 */
+        width: 10px;
+        height: 10px;
+    }
+}
+
+/* 难度显示样式 - PC版 */
+.difficulty_display_pc {
+    display: none;
+}
+
+/* 难度显示样式 - 移动版 */
+.difficulty_display_mobile {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #00ffff;
+    font-size: 12px;
+    background-color: rgba(0, 50, 75, 0.7);
+    border-radius: 4px;
+    padding: 2px 6px;
+}
+
+/* PC版显示难度 */
+@media (min-width: 768px) {
+    .difficulty_display_pc {
+        display: block;
+    }
+}
+
+/* 移动版显示难度 */
+@media (max-width: 767px) {
+    .difficulty_display_mobile {
+        display: block;
+    }
+}
+
+.welcome_btn_7ree {
+    /* 继承自.card_btn_7ree */
+}
+
+/* 游戏结束卡片特殊样式 */
+.gameover_card_7ree {
+    /* 继承自.card_7ree */
+    display: none; /* 默认隐藏 */
+}
+
+/* 游戏结束卡片标题颜色 - 使用绿色 */
+.gameover_card_7ree .card_title_7ree {
+    color: #00cc66;
+    text-shadow: 0 0 10px rgba(0, 204, 102, 0.7);
+}
+
+/* 游戏结束卡片按钮颜色 */
+.gameover_card_7ree .card_btn_7ree {
+    color: #00cc66;
+    background-color: #1a2a1f;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3), inset 0 0 5px rgba(0, 204, 102, 0.2);
+}
+
+.gameover_card_7ree .card_btn_7ree:hover {
+    background-color: #25352a;
+    box-shadow: 0 0 15px rgba(0, 204, 102, 0.3);
+}
+
+/* 游戏结束卡片的统计数据颜色 */
+.gameover_card_7ree .stat_value_7ree {
+    color: #00cc66;
+    text-shadow: 0 0 8px rgba(0, 204, 102, 0.5);
+}
+
+/* 游戏暂停卡片特殊样式 */
+.pause_card_7ree {
+    /* 继承自.card_7ree */
+    display: none; /* 默认隐藏 */
+    background-color: rgba(0, 0, 0, 0.75); /* 稍微透明一些，能看到背后的游戏 */
+}
+
+/* 游戏暂停卡片标题颜色 - 使用黄色 */
+.pause_card_7ree .card_title_7ree {
+    color: #ffcc00;
+    text-shadow: 0 0 10px rgba(255, 204, 0, 0.7);
+}
+
+.pause_content_7ree {
+    /* 继承自.card_content_7ree */
+    background: linear-gradient(135deg, #0c276f 0%, #161a20 95%);
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.8),
+        0 0 40px rgba(255, 204, 0, 0.2), 
+        inset 0 0 15px rgba(255, 204, 0, 0.1);
+}
+
+.pause_message_7ree {
+    font-size: 18px;
+    margin: 15px 0;
+    color: #ffeeaa;
+    text-shadow: 0 0 8px rgba(255, 204, 0, 0.5);
+}
+
+.pause_btn_7ree {
+    /* 继承自.card_btn_7ree */
+    color: #ffcc00;
+    background-color: #2a2310;
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.3), inset 0 0 8px rgba(255, 204, 0, 0.2);
+}
+
+.pause_btn_7ree:hover {
+    background-color: #3a3217;
+    box-shadow: 0 0 20px rgba(255, 204, 0, 0.4);
+}
+
+.game_stats_7ree {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+    background-color: rgba(10, 20, 35, 0.6);
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 
+        inset 0 0 10px rgba(0, 0, 0, 0.3),
+        inset 0 0 5px rgba(0, 155, 155, 0.1);
+}
+
+.stat_item_7ree {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 200, 200, 0.2);
+    padding-bottom: 8px;
+}
+
+.stat_label_7ree {
+    color: #aaa;
+    font-size: 16px;
+}
+
+.stat_value_7ree {
+    color: #00ffff;
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+}
+
+/* 隐藏卡片的通用类 */
+.card_hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* PC版卡片尺寸调整 */
+@media (min-width: 768px) {
+    .card_content_7ree {
+        width: 450px;
+        padding: 40px;
+    }
+    
+    .card_title_7ree {
+        font-size: 40px;
+        margin-bottom: 15px;
+    }
+    
+    .card_btn_7ree {
+        padding: 15px 40px;
+        font-size: 20px;
+    }
+    
+    .difficulty_selector_7ree label {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+    
+    .difficulty_select_7ree {
+        font-size: 18px;
+        padding: 10px 15px;
+        width: 150px;
+        padding-right: 35px;
+        background-size: 18px;
+    }
+    
+    .pause_message_7ree {
+        font-size: 22px;
+        margin: 20px 0;
+    }
+    
+    .game_stats_7ree {
+        padding: 20px;
+        margin-top: 25px;
+    }
+    
+    .stat_label_7ree {
+        font-size: 18px;
+    }
+    
+    .stat_value_7ree {
+        font-size: 24px;
+    }
+} 

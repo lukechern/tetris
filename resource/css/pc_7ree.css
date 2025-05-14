@@ -1,0 +1,452 @@
+/* PC布局特定样式 */
+@media (min-width: 768px) {
+    .container_7ree {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 30px;
+        gap: 30px; /* 稍微增加间隙 */
+        display: flex; /* 确保容器使用flex布局 */
+        flex-wrap: nowrap; /* 防止元素换行 */
+        align-items: stretch; /* 让子元素拉伸以填充高度 */
+        width: 90vw; /* 占据视口宽度的90% */
+        max-width: 1400px; /* 最大宽度限制 */
+        height: 90vh; /* 占据视口高度的90% */
+        margin-top: 2vh; /* 保持一点顶部外边距 */
+    }
+    
+    /* 左侧状态栏 */
+    .sidebar_left_7ree {
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        min-width: 150px; /* 确保有最小宽度 */
+        flex-shrink: 0; /* 防止压缩 */
+        height: 100%; /* 添加高度，使margin-top: auto生效 */
+    }
+    
+    /* 游戏区域 - 允许其基于内容和aspect-ratio决定高度 */
+    .game_container_7ree {
+        width: auto; /* 不固定宽度百分比，让其基于内容和flex增长 */
+        flex-grow: 1; /* 允许增长以填充空间 */
+        flex-shrink: 1; /* 允许收缩 */
+        display: flex;
+        justify-content: center;
+        align-items: center; /* 游戏板在中间对齐 */
+        padding: 0 20px; /* 增加左右padding */
+        min-width: 0; /* 防止内容溢出flex容器 */
+    }
+    
+    /* 右侧控制栏 */
+    .sidebar_right_7ree {
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        /* justify-content: flex-end; */ /* 移除底部对齐，让内容自然排列 */
+        justify-content: space-between; /* 让内容在垂直方向上分布 */
+        min-width: 180px; /* 稍微增加最小宽度 */
+        flex-shrink: 0;
+        overflow: visible;
+        position: relative;
+        background: none; /* 强制无背景 */
+        background-color: transparent; /* 强制透明背景色 */
+        /* height: 100%; */ /* 由 align-items: stretch 控制高度 */
+        padding-bottom: 20px; /* 底部边距 */
+        /* margin-right: 30px; */ /* 移除右外边距，使用gap */
+    }
+    
+    /* 包含预览窗口和主要控制按钮的容器 - PC版靠底部 */
+    .bottom_controls_wrapper_7ree {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-bottom: 20px; /* 与下方controls_7ree的间距 */
+    }
+    
+    /* 控制按钮样式 */
+    .controls_7ree {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* 居中内部元素 */
+        gap: 15px; /* 恢复主要按钮和移动按钮组的间距 */
+        margin-bottom: 10px; /* 与底部的间距 */
+    }
+    
+    .controls_7ree > .btn_7ree {
+        margin-bottom: 5px;
+    }
+    
+    /* 隐藏移动端专用元素 */
+    .mobile_title_7ree,
+    .mobile_stats_7ree {
+        display: none;
+    }
+    
+    /* 标题样式调整 */
+    .title_7ree {
+        font-size: 28px;
+    }
+    
+    /* 下一个方块预览区域样式调整 - 移除固定边距 */
+    .next_piece_container_7ree {
+        width: 100%;
+        /* margin-bottom: 360px; */ /* 移除大边距 */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10px; /* 添加一些顶部间距 */
+    }
+    
+    .next_piece_container_7ree .label_7ree {
+        text-align: center;
+        margin-bottom: 5px;
+        font-size: 16px;
+    }
+    
+    #next_piece_7ree {
+        /* max-width: 100px; */ /* 移除固定最大宽度 */
+        width: 80%; /* 占据容器宽度的80% */
+        max-width: 160px; /* 设置新的最大像素宽度，比原来大 */
+        margin: 0 auto;
+        box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+    }
+    
+    /* PC端控制按钮样式 - 保留但优化样式 */
+    .mobile_controls_7ree {
+        display: flex !important; /* 确保在PC端也显示 */
+        margin-top: 25px;
+        flex-direction: column;
+    }
+    
+    /* PC端按钮风格 */
+    .pc_style_controls_7ree {
+        width: 100%;
+        margin-top: 20px;
+    }
+    
+    .pc_style_controls_7ree .direction_controls_7ree {
+        justify-content: center;
+        gap: 5px;
+        margin-bottom: 10px;
+    }
+    
+    .pc_style_controls_7ree .direction_controls_7ree .btn_7ree {
+        width: 50px;
+        height: 50px;
+        font-size: 16px;
+        background-color: #252525;
+        color: #00ffff;
+        box-shadow: 0 0 15px rgba(0, 255, 255, 0.1), inset 0 0 5px rgba(0, 255, 255, 0.1);
+        transition: all 0.15s;
+    }
+    
+    .pc_style_controls_7ree .direction_controls_7ree .btn_7ree:hover {
+        background-color: #333;
+        transform: translateY(-2px);
+        box-shadow: 0 0 15px rgba(0, 255, 255, 0.2), inset 0 0 5px rgba(0, 255, 255, 0.2);
+    }
+    
+    .pc_style_controls_7ree .direction_controls_7ree .btn_7ree:active {
+        transform: translateY(0);
+        background-color: #1a1a1a;
+    }
+    
+    .pc_style_controls_7ree .action_controls_7ree {
+        justify-content: center;
+        gap: 20px;
+    }
+    
+    .pc_style_controls_7ree .action_controls_7ree .btn_7ree {
+        width: auto;
+        min-width: 100px;
+        padding: 10px 15px;
+        background-color: #252525;
+        color: #00ffff;
+        box-shadow: 0 0 15px rgba(0, 255, 255, 0.1), inset 0 0 5px rgba(0, 255, 255, 0.1);
+    }
+    
+    .pc_style_controls_7ree .action_controls_7ree .btn_7ree:hover {
+        background-color: #333;
+        transform: translateY(-2px);
+    }
+    
+    /* 美化方块效果 */
+    .cell_7ree.active_7ree {
+        /* box-shadow: 
+            inset 0 0 15px rgba(255, 255, 255, 0.4),
+            0 0 10px rgba(255, 255, 255, 0.3),
+            0 5px 15px rgba(0, 200, 255, 0.3); */
+        transform: scale(0.97) translateZ(3px);
+        transition: transform 0.08s ease-out;
+    }
+    
+    /* 按下时的效果 */
+    .cell_7ree.active_7ree:active {
+        transform: scale(0.93) translateZ(1px);
+        box-shadow: 
+            inset 0 0 10px rgba(255, 255, 255, 0.3),
+            0 0 8px rgba(255, 255, 255, 0.2);
+    }
+    
+    /* 优化游戏面板 */
+    #game_board_7ree {
+        /* 宽度由父容器决定，高度由aspect-ratio决定 */
+        width: 100%; 
+        /* 确保高度由 aspect-ratio 控制 */
+        height: auto; 
+        /* aspect-ratio: 11 / 20; 已在 base.css 定义 */
+        /* 增大最大宽度，使其更灵活 */
+        max-width: min(35vw, 500px);
+        /* 移除固定最大高度，由宽度和比例决定 */
+        /* 移除这里的独立边框定义，使用base_7ree.css的统一定义 */
+    }
+    
+    /* 确保PC端显示右侧边框效果 */
+    .game_board_right_side_effect {
+        display: block;
+    }
+    
+    /* 3D 复古样式 */
+    /* .container_7ree 样式已移动到 base_7ree.css */
+    
+    /* 显示并设置键盘提示样式 */
+    .keyboard_hints_7ree {
+        display: block; 
+        margin-top: auto; /* 移到左侧栏底部 */
+        margin-bottom: 40px; /* 保持一些底部间距 */
+        background-color: rgba(10, 20, 35, 0.6); /* 调整为深蓝色调半透明 */
+        border-radius: 8px;
+        padding: 15px;
+        width: 100%;
+        /* max-width: 200px; */ /* 移除最大宽度限制，使其与 stats 等宽 */
+    }
+    
+    .hint_title_7ree {
+        font-size: 16px; /* 从 14px 增大 */
+        color: #00ffff;
+        margin-bottom: 10px;
+        text-align: center;
+        text-transform: uppercase;
+    }
+    
+    .hint_item_7ree {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 5px 0;
+    }
+    
+    /* 更新按键图标样式 */
+    .key_7ree {
+        padding: 3px 5px;
+        background-color: #1a2330; /* 调整为深蓝色调 */
+        border-radius: 4px;
+        border: 1px solid #3a4a5a; /* 调整为亮蓝灰色 */
+        color: #fff;
+        font-size: 16px; /* 稍微增大Emoji尺寸 */
+        min-width: 40px;
+        text-align: center;
+        display: inline-block; /* 确保正确显示 */
+        line-height: 1.2; /* 调整行高适配Emoji */
+    }
+    
+
+
+    /* PC端控制按钮容器 - 垂直排列两行 */
+    .mobile_controls_7ree.pc_style_controls_7ree {
+        display: flex !important; 
+        flex-direction: column; /* 内部按行排列 */
+        align-items: center; /* 整体居中 */
+        gap: 10px; /* 行之间的间距 */
+        margin-top: 0;
+        order: 0; /* 确保在键盘提示下方 */
+    }
+
+    /* PC 控制按钮第一行 */
+    .pc_control_row_1_7ree {
+        display: flex;
+        justify-content: center; /* 居中排列 */
+        align-items: center;
+        gap: 8px; /* 按钮间距 */
+        width: 100%;
+    }
+
+    /* PC 控制按钮第二行 */
+    .pc_control_row_2_7ree {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        width: 100%;
+    }
+
+    /* PC版 主要控制按钮 (开始/暂停/声音) */
+    .main_controls_7ree {
+        display: flex; /* 在PC端显示 */
+        justify-content: center;
+        gap: 5px;
+        order: -1; /* 在键盘提示下方 */
+        margin-top: 30px; 
+        width: 100%;
+    }
+
+    .main_controls_7ree .btn_7ree {
+        font-size: 28px; 
+        min-width: 55px; 
+        height: 55px; 
+        display: inline-flex; /* 确保垂直居中 */
+        align-items: center;
+        justify-content: center;
+        position: relative; /* 为绝对定位的 tooltip 提供基准 */
+    }
+    
+    /* PC端 用户操作按钮容器 */
+    .user_controls_7ree.pc_style_controls_7ree {
+        display: grid !important; 
+        /* grid-template-columns: repeat(3, 60px); */ 
+        /* grid-template-rows: repeat(2, 50px); */    
+        grid-template-columns: repeat(3, 90px); /* 列宽放大1.5倍 */
+        grid-template-rows: repeat(2, 75px); /* 行高放大1.5倍 */
+        gap: 15px; /* 稍微增大间隙 */
+        justify-content: center; /* 水平居中整个网格 */
+        justify-items: center; /* 让网格项在其单元格内水平居中 */
+        align-content: center;   
+        width: 100%;
+        margin-top: 0;
+        margin-bottom: 20px;
+        order: 0; 
+        flex-direction: unset;
+        align-items: unset;
+    }
+
+    /* 新的按钮网格定位 - 移除 justify-self */
+    /* 第一行: 下落按钮 */
+    .user_controls_7ree.pc_style_controls_7ree #down_btn_7ree { grid-column: 1 / 2; grid-row: 1; /* justify-self: center; */ }
+    .user_controls_7ree.pc_style_controls_7ree #drop_btn_7ree { grid-column: 3 / 4; grid-row: 1; /* justify-self: center; */ }
+    /* 第二行: 水平移动/旋转 */
+    .user_controls_7ree.pc_style_controls_7ree #left_btn_7ree { grid-column: 1; grid-row: 2; }
+    .user_controls_7ree.pc_style_controls_7ree #rotate_btn_7ree { grid-column: 2; grid-row: 2; }
+    .user_controls_7ree.pc_style_controls_7ree #right_btn_7ree { grid-column: 3; grid-row: 2; }
+    
+    /* 用户操作按钮样式 (PC) - 统一大小 */
+    .user_controls_7ree.pc_style_controls_7ree .btn_7ree {
+        width: 100%; 
+        height: 100%;
+        font-size: 36px; /* 放大1.5倍 (24px * 1.5) */
+        padding: 0; /* 移除内边距，让图标填充 */
+        min-width: auto; /* 移除最小宽度限制 */
+        display: flex; 
+        align-items: center;
+        justify-content: center;
+        position: relative; /* 为绝对定位的 tooltip 提供基准 */
+    }
+    
+    /* 移除不再需要的样式 */
+    .pc_control_row_1_7ree,
+    .pc_control_row_2_7ree {
+        display: none;
+    }
+    
+
+    /* PC版 主要控制按钮 和 用户操作按钮 - 添加相对定位 */
+    .main_controls_7ree .btn_7ree,
+    .user_controls_7ree.pc_style_controls_7ree .btn_7ree {
+        position: relative; /* 为绝对定位的 tooltip 提供基准 */
+    }
+
+    /* 自定义工具提示 - 基础样式 (隐藏) */
+    .main_controls_7ree .btn_7ree[data-tooltip]::after,
+    .user_controls_7ree.pc_style_controls_7ree .btn_7ree[data-tooltip]::after {
+        content: attr(data-tooltip); /* 获取提示文本 */
+        position: absolute;
+        bottom: 100%; /* 定位在按钮上方 - 恢复 */
+        left: 50%;
+        transform: translateX(-50%) translateY(-10px); /* 水平居中并向上移一点 - 恢复 */
+        background-color: rgba(0, 255, 255, 0.95); /* 青色背景，稍透明 - 恢复 */
+        color: #050a14; /* 深色文字 - 恢复 */
+        padding: 6px 12px; /* 内边距 - 恢复 */
+        border-radius: 5px; /* 恢复圆角 */
+        white-space: nowrap; /* 防止换行 */
+        font-size: 14px; /* 保持增大的字体大小 */
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* 更现代的字体 - 恢复 */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* 恢复阴影 */
+        z-index: 1000; /* 确保在最上层 - 恢复 */
+        opacity: 0; /* 默认隐藏 */
+        visibility: hidden;
+        transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out, transform 0.2s ease-in-out; /* 恢复 transition */
+        pointer-events: none; /* 提示本身不响应鼠标事件 - 恢复 */
+    }
+
+    /* 自定义工具提示 - 箭头 (隐藏) */
+    .main_controls_7ree .btn_7ree[data-tooltip]::before,
+    .user_controls_7ree.pc_style_controls_7ree .btn_7ree[data-tooltip]::before {
+        content: '';
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%) translateY(0px); /* 定位在文本框下方，紧贴 - 恢复 */
+        border-width: 7px;
+        border-style: solid;
+        border-color: rgba(0, 255, 255, 0.95) transparent transparent transparent; /* 向上指的三角形 - 恢复颜色 */
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out, transform 0.2s ease-in-out; /* 恢复 transition */
+        z-index: 999; /* 在文本框下方一点点 - 恢复 */
+        pointer-events: none; /* 恢复 */
+    }
+
+    /* 鼠标悬停时显示工具提示 */
+    .main_controls_7ree .btn_7ree[data-tooltip]:hover::before,
+    .main_controls_7ree .btn_7ree[data-tooltip]:hover::after,
+    .user_controls_7ree.pc_style_controls_7ree .btn_7ree[data-tooltip]:hover::before,
+    .user_controls_7ree.pc_style_controls_7ree .btn_7ree[data-tooltip]:hover::after {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(-5px); /* 向上移动一点，增加出现效果 */
+    }
+
+    /* 鼠标悬停时显示工具提示箭头 - 调整箭头位置使其紧贴文本框 */
+     .main_controls_7ree .btn_7ree[data-tooltip]:hover::before,
+     .user_controls_7ree.pc_style_controls_7ree .btn_7ree[data-tooltip]:hover::before {
+         transform: translateX(-50%) translateY(1px); /* 调整箭头位置 */
+     }
+}
+
+/* PC版难度显示样式 */
+.difficulty_display_pc {
+    background-color: rgba(10, 20, 35, 0.6);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    color: #00ffff;
+    font-size: 16px;
+    text-align: center;
+    padding: 20px 10px; /* 增加垂直内边距，使其更高 */
+    display: block;
+    margin-bottom: 20px; /* 确保与下方stats有间距 */
+}
+
+.difficulty_display_pc span {
+    color: #00ffff;
+    font-weight: bold;
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+}
+
+.label_7ree{
+    font-size: 16px;
+}
+
+/* 按钮激活状态的视觉反馈 - 将被移除 */
+/* 
+.btn_7ree.btn_active_7ree {
+    transform: scale(0.95);
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.5), 0 0 5px rgba(0, 255, 255, 0.5);
+    background-color: #008080;
+    transition: transform 0.05s ease-out, box-shadow 0.05s ease-out, background-color 0.05s ease-out;
+}
+*/
+
+/* 游戏面板容器 - PC端尺寸跟随游戏面板 */
+#game_board_container_7ree {
+    width: 100%;
+    max-width: min(35vw, 500px); /* 保持与游戏面板最大宽度一致 */
+}

@@ -1,0 +1,24 @@
+/* resource/css/ghost_piece_7ree.css */
+
+.cell_7ree.ghost_cell_7ree {
+    /* 改用 border 代替 outline */
+    border: 1px dashed rgba(0, 150, 255, 0.6); /* 蓝色虚线，稍微提高不透明度 */
+    /* outline: 1px dashed rgba(255, 255, 255, 0.6); */
+    /* outline-offset: -1px; */ /* border 不需要 offset */
+    /* 确保背景透明，不覆盖后面的内容 */
+    background-color: transparent !important; 
+    /* 移除可能继承的阴影 */
+    box-shadow: none !important; 
+    /* border: none !important; */ /* 移除这个，因为我们现在用 border */
+}
+
+/* 隐藏幽灵方块上的 3D 效果伪元素 */
+.cell_7ree.ghost_cell_7ree::before,
+.cell_7ree.ghost_cell_7ree::after {
+    display: none !important;
+}
+
+/* 隐藏幽灵方块上的四角连接线 */
+.cell_7ree.ghost_cell_7ree span {
+    display: none !important;
+} 
